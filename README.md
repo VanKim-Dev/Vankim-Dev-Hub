@@ -45,7 +45,10 @@ A modern, responsive personal finance tracking dashboard built with **Next.js** 
    npm run dev
 
 📸 Screenshots
-
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/76229839-f461-47e8-aa05-83359a6001f1" width="45%" alt="Main Dashboard" />
+  <img src="https://github.com/user-attachments/assets/fa1c3e0c-78d4-4cdf-8d4b-7b8b924b6145" width="45%" alt="Transaction Form" />
+</div>
 
 📄 License
 This project is licensed under the MIT License.
