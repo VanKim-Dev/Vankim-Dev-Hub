@@ -25,7 +25,8 @@ export const en = {
   sidebar: {
     home: "Home",
     finance: "Finance Dashboard",
-    analytics: "Analytics",
+    // analytics: "Analytics",
+    crypto: "Crypto Tracker",
     settings: "Settings",
     appearance: "Appearance",
     language: "Language",
@@ -122,4 +123,28 @@ export const en = {
     or: "OR",
     errorGuest: "Guest account setup is required.",
   },
+  crypto: {
+    title: "Crypto Overview",
+    description: "Monitor real-time market data and the latest blockchain news.",
+    marketTrend: "Market Trend",
+    latestNews: "Latest News",
+    topAssets: "Top Assets",
+    noData: "Failed to load market data.",
+    // For Chart and Cards
+    chartTitle: "Bitcoin Price (24h)",
+    marketCap: "Total Market Cap",
+    vol24h: "24h Volume",
+    dominance: "BTC Dominance",
+    yesterday: "from yesterday",
+    updating: "Update Delayed", // 추가: Rate Limit 상황용
+    rate_limit_msg: "Real-time prices are unavailable due to API limits. Please refresh in a minute.", // 추가
+  },
+  cryptoTable: {
+    rank: "Rank",
+    name: "Name",
+    price: "Price",
+    change24h: "24h Change",
+    marketCap: "Market Cap",
+  },
+
 };

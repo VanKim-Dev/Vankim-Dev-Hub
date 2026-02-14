@@ -1,4 +1,4 @@
-# 💰 Finance Dev Hub (가계부 대시보드)
+# 💰 Finance Dev Hub
 
 A modern, responsive personal finance tracking dashboard built with **Next.js** and **Supabase**. Manage your income and expenses with real-time data synchronization and intuitive visualizations.
 

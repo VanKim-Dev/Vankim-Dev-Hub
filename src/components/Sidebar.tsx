@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { createClient } from '@/lib/supabase'
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Wallet, PieChart, Settings, LogOut, Home, Languages } from "lucide-react";
+import { LayoutDashboard, Wallet, PieChart, Settings, LogOut, Home, Languages, Globe } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { ModeToggle } from "@/components/ModeToggle";
@@ -23,7 +23,8 @@ export default function Sidebar() {
   const menuItems = [
     { name: t.sidebar.home, href: "/", icon: Home },
     { name: t.sidebar.finance, href: "/finance", icon: Wallet },
-    { name: t.sidebar.analytics, href: "/analytics", icon: PieChart },
+    // { name: t.sidebar.analytics, href: "/analytics", icon: PieChart },
+    { name: t.sidebar.crypto, href: "/crypto", icon: Globe },
     { name: t.sidebar.settings, href: "/settings", icon: Settings },
   ];
 

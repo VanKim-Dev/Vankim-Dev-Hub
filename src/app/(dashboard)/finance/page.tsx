@@ -10,14 +10,14 @@ import { i18n } from '@/locales'
 import { useLanguage } from '@/context/LanguageContext'
 
 // 분리한 컴포넌트들 Import
-import { DateFilter } from '@/components/dashboard/DateFilter'
-import { SummaryCards } from '@/components/dashboard/SummaryCards'
-import { CategoryChart } from '@/components/dashboard/CategoryChart'
-import { MonthlyChart } from '@/components/dashboard/MonthlyChart'
-import { TransactionForm } from '@/components/dashboard/TransactionForm'
-import { TransactionTable } from '@/components/dashboard/TransactionTable'
-import { ScheduleCalendar } from '@/components/dashboard/ScheduleCalendar'
-import { ReportDownload } from '@/components/dashboard/ReportDownload'
+import { DateFilter } from '@/components/dashboard/finance/DateFilter'
+import { SummaryCards } from '@/components/dashboard/finance/SummaryCards'
+import { CategoryChart } from '@/components/dashboard/finance/CategoryChart'
+import { MonthlyChart } from '@/components/dashboard/finance/MonthlyChart'
+import { TransactionForm } from '@/components/dashboard/finance/TransactionForm'
+import { TransactionTable } from '@/components/dashboard/finance/TransactionTable'
+import { ScheduleCalendar } from '@/components/dashboard/finance/ScheduleCalendar'
+import { ReportDownload } from '@/components/dashboard/finance/ReportDownload'
 import { Button } from '@/components/ui/button'
 
 export default function Dashboard() {

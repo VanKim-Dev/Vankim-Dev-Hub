@@ -65,21 +65,32 @@ export default function Home() {
         </Link>
 
         {/* Crypto Tracker (Coming Soon) */}
-        <div className="p-10 bg-slate-100/50 border border-dashed border-slate-300 rounded-[2.5rem] text-left relative overflow-hidden group">
+        <Link 
+          href="/crypto" 
+          className="group relative p-10 bg-white border border-slate-200 rounded-[2.5rem] shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 text-left overflow-hidden"
+        >
           <div className="flex justify-between items-start mb-8">
-            <div className="p-5 bg-white border border-slate-100 rounded-2xl shadow-sm text-slate-300">
+            {/* 아이콘 영역: Crypto는 Indigo 컬러 테마 적용 */}
+            <div className="p-5 bg-indigo-50 text-indigo-600 rounded-2xl group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 shadow-inner z-10">
               <Globe size={32} />
             </div>
-            <span className="text-[10px] font-black bg-slate-200 text-slate-500 px-3 py-1.5 rounded-lg uppercase tracking-widest">Coming Soon</span>
+            <div className="p-2 rounded-full bg-slate-50 group-hover:bg-indigo-50 transition-colors z-10">
+              <ArrowRight className="text-slate-300 group-hover:text-indigo-600 transition-all group-hover:translate-x-1" />
+            </div>
           </div>
-          <h3 className="text-2xl font-extrabold mb-4 text-slate-400">{t.home.cryptoTitle}</h3>
-          <p className="text-slate-400 font-medium leading-relaxed">{t.home.cryptoDesc}</p>
           
-          {/* 장식용 배경 효과 */}
-          <div className="absolute -bottom-10 -right-10 opacity-[0.03] text-slate-900 rotate-12">
+          <h3 className="text-2xl font-extrabold mb-4 text-slate-900 group-hover:text-indigo-600 transition-colors z-10">
+            {t.home.cryptoTitle}
+          </h3>
+          <p className="text-slate-500 font-medium leading-relaxed z-10">
+            {t.home.cryptoDesc}
+          </p>
+          
+          {/* 장식용 배경 효과: 호버 시 살짝 더 선명해지도록 설정 */}
+          <div className="absolute -bottom-10 -right-10 opacity-[0.03] group-hover:opacity-[0.06] text-indigo-900 rotate-12 transition-opacity">
             <Globe size={200} />
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* 푸터 영역 (선택사항) */}

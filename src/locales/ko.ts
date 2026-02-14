@@ -25,7 +25,8 @@ export const ko = {
   sidebar: {
     home: "홈",
     finance: "재무 대시보드",
-    analytics: "데이터 분석",
+    // analytics: "데이터 분석",
+    crypto: "크립토 분석",
     settings: "설정",
     appearance: "테마 설정",
     language: "언어",
@@ -122,4 +123,30 @@ export const ko = {
     or: "또는",
     errorGuest: "게스트 계정 설정이 필요합니다.",
   },
+  crypto: {
+    title: "크립토 개요",
+    description: "실시간 시장 데이터 및 최신 블록체인 뉴스를 모니터링합니다.",
+    marketTrend: "시장 트렌드",
+    latestNews: "최신 뉴스",
+    topAssets: "주요 자산",
+    noData: "시세 데이터를 불러올 수 없습니다.",
+    // 차트 및 카드용
+    chartTitle: "비트코인 시세 (24시간)",
+    marketCap: "총 시가총액",
+    vol24h: "24시간 거래량",
+    dominance: "BTC 점유율",
+    yesterday: "어제 대비",
+    // --- API 상태 관련 문구 추가 ---
+    updating: "데이터 업데이트 지연",
+    rate_limit_msg: "무료 API 호출 제한으로 인해 실시간 가격을 가져올 수 없습니다. 약 1분 후 다시 시도해 주세요.",
+    syncing: "가격을 동기화 중입니다...",
+  },
+  cryptoTable: {
+    rank: "순위",
+    name: "자산명",
+    price: "현재가",
+    change24h: "24시간 변동",
+    marketCap: "시가총액",
+  },
+  
 };
