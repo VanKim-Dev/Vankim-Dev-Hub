@@ -218,36 +218,43 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="bg-background min-h-screen p-6 md:p-10">
-      <div className="mx-auto max-w-4xl space-y-10">
-        {user && (
-          <div className="mb-6 flex flex-col gap-1">
+    <div className="flex-1 space-y-4 p-8 pt-6">
+      <div className="mx-auto max-w-5xl space-y-8">
+{user && (
+          <div className="flex flex-col gap-1">
             <div className="flex items-center gap-3">
-              {/* 프로필 아바타: 조금 더 작고 깔끔하게 조정 */}
-              <div className="bg-primary/10 text-primary flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold border border-primary/20">
+              <div className="bg-primary/10 text-primary flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold border border-primary/20">
                 {user.email?.charAt(0).toUpperCase()}
               </div>
-              <p className="text-base font-semibold tracking-tight">
-                <span className="text-primary">{user.email?.split('@')[0]}</span>
-                {"\t"}{labels.dashboard.greet}
-              </p>
+              <div>
+                <p className="text-lg font-bold tracking-tight">
+                  <span className="text-primary">{user.email?.split('@')[0]}</span>
+                  {labels.dashboard.greet}
+                </p>
+                <p className="text-muted-foreground text-sm">
+                   {labels.dashboard.subtitle}
+                </p>
+              </div>
             </div>
-            <p className="text-muted-foreground text-sm pl-11">
-               {labels.dashboard.subtitle}
-            </p>
           </div>
         )}
 
-        <div className="flex items-center justify-between">
-          <h1 className="text-4xl font-bold tracking-tight">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold tracking-tight shrink-0"> {/* shrink-0으로 제목 밀림 방지 */}
             {labels.dashboard.title}
           </h1>
-          <ReportDownload
-            transactions={filteredTransactions}
-            summary={{ income: totalIncome, expense: totalExpense, balance }}
-            dateRange={dateRange}
-            lang={language}
-          />
+          
+          {/* 버튼 컨테이너에 flex-wrap 추가 */}
+          <div className="flex flex-wrap items-center gap-2"> 
+            <ReportDownload
+              transactions={filteredTransactions}
+              summary={{ income: totalIncome, expense: totalExpense, balance }}
+              dateRange={dateRange}
+              lang={language}
+            />
+            
+            {/* 혹시 여기에 다른 Export 버튼들이 있다면 함께 배치됩니다 */}
+          </div>
         </div>
 
         <DateFilter dateRange={dateRange} setDateRange={setDateRange} />

@@ -26,7 +26,7 @@ export function ReportDownload({ transactions, summary, dateRange }: any) {
   const fileName = `${(t as any).pdf?.title || "Report"}.pdf`.replace(/\s/g, "_");
 
   return (
-    <div className="inline-block">
+    <div className="w-full sm:w-auto inline-block">
       <PDFDownloadLink
         document={
           <ReportPDF 
@@ -39,16 +39,20 @@ export function ReportDownload({ transactions, summary, dateRange }: any) {
         fileName={fileName}
       >
         {({ loading }) => (
-          <Button variant="outline" disabled={loading} className="gap-2 transition-all">
+          <Button 
+          variant="outline" 
+          disabled={loading} 
+          className="w-full sm:w-auto gap-2 transition-all text-xs md:text-sm h-9 md:h-10" // 너비와 폰트 크기 조절
+        >
             {loading ? (
-              <>
-                <Loader2 className="w-4 h-4 animate-spin" />
-                {(t as any).common?.processing || "Processing..."}
-              </>
+            <>
+              <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              <span className="truncate">{(t as any).common?.processing || "..."}</span>
+            </>
             ) : (
               <>
-                <FileDown className="w-4 h-4" />
-                {t.dashboard.reportDownload || "Download PDF"}
+                <FileDown className="w-3.5 h-3.5" />
+                <span className="truncate">{t.dashboard.reportDownload || "Download PDF"}</span>
               </>
             )}
           </Button>

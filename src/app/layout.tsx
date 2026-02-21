@@ -39,7 +39,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
+          disableTransitionOnChange={false}
         >
           <ReactQueryProvider>
             <LanguageProvider>

@@ -56,15 +56,18 @@ export function TransactionTable({
     <Card className="shadow-md">
       <CardHeader>
         <CardTitle className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <span className="font-bold text-xl">
               {language === 'ko' ? '거래 내역' : 'Transactions'}
             </span>
-            <div className="flex items-center gap-2">
+            
+            {/* 버튼 컨테이너: 모바일에서는 세로(flex-col), sm 이상에서는 가로(flex-row) */}
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
               <Button
                 variant="outline"
                 size="sm"
-                className="h-8 gap-1 border-green-600 text-xs text-green-600 hover:bg-green-50 dark:hover:bg-green-950"
+                // w-full을 추가하여 모바일에서 꽉 차게 만들고, sm:w-auto로 복구합니다.
+                className="h-8 gap-1 border-green-600 text-xs text-green-600 hover:bg-green-50 dark:hover:bg-green-950 w-full sm:w-auto justify-center"
                 onClick={() => exportToExcel(transactions, getDynamicFilename())}
               >
                 <FileSpreadsheet className="h-3 w-3" />
@@ -74,7 +77,7 @@ export function TransactionTable({
               <Button
                 variant="ghost"
                 size="sm"
-                className="text-muted-foreground h-8 gap-1 text-xs"
+                className="text-muted-foreground h-8 gap-1 text-xs w-full sm:w-auto justify-center"
                 onClick={() => exportToCSV(transactions, getDynamicFilename())}
               >
                 <Download className="h-3 w-3" />
@@ -83,8 +86,9 @@ export function TransactionTable({
             </div>
           </div>
 
+          {/* 날짜 표시 부분 */}
           {dateRange.from && dateRange.to && (
-            <span className="text-muted-foreground text-sm font-normal bg-muted px-3 py-1 rounded-full">
+            <span className="text-muted-foreground text-sm font-normal bg-muted px-3 py-1 rounded-full text-center md:text-left">
               {format(dateRange.from, 'yyyy-MM-dd')} ~ {format(dateRange.to, 'yyyy-MM-dd')}
             </span>
           )}

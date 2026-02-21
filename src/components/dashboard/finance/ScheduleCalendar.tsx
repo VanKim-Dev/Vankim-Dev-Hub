@@ -63,15 +63,43 @@ export function ScheduleCalendar({ transactions }: ScheduleCalendarProps) {
           />
         </div>
         <style jsx global>{`
+          /* 기본 공통 스타일 */
           .fc { font-family: inherit; }
           .fc-header-toolbar { margin-bottom: 1.5rem !important; font-size: 0.9rem; }
           .fc-daygrid-day-number { color: #666; text-decoration: none !important; padding: 4px !important; }
           .fc-event { cursor: pointer; border-radius: 4px; padding: 2px 4px; font-size: 0.75rem; font-weight: 600; }
-          .fc-col-header-cell-cushion { color: #444; text-decoration: none !important; }
-          .dark .fc-daygrid-day-number { color: #ccc; }
-          .dark .fc-col-header-cell-cushion { color: #eee; }
-          /* 캘린더 내부 텍스트 크기 조절 */
           .fc-toolbar-title { font-size: 1.1rem !important; font-weight: bold; }
+
+          /* 요일 헤더 기본 색상 (라이트 모드) */
+          .fc-col-header-cell-cushion { 
+            color: #444; 
+            text-decoration: none !important; 
+            padding: 8px 0 !important;
+            display: inline-block;
+          }
+
+          /* ✅ 다크모드 전용 스타일 조절 */
+          .dark .fc-daygrid-day-number { 
+            color: #cbd5e1 !important; /* 숫자 색상 밝게 */
+          }
+
+          .dark .fc-col-header-cell {
+            background-color: #1e293b !important; 
+          }
+
+          .dark .fc-col-header-cell-cushion { 
+            color: #f8fafc !important;
+          }
+
+          .dark .fc-theme-standard td, 
+          .dark .fc-theme-standard th, 
+          .dark .fc-scrollgrid {
+            border-color: #334155 !important;
+          }
+
+          .dark .fc-day-today {
+            background: rgba(255, 255, 255, 0.05) !important;
+          }
         `}</style>
       </CardContent>
     </Card>
