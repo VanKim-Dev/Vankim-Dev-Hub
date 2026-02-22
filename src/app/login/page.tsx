@@ -1,12 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { supabase } from "@/lib/supabase";
+// import { supabase } from "@/lib/supabase";
 import { Languages, LogIn, Moon, Sun, UserPlus, ArrowLeft } from "lucide-react";
 import { i18n } from "@/locales";
 import { useLanguage } from "@/context/LanguageContext";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
+import { login, signup, signInWithGoogle, loginAsGuest } from "./actions";
 
 // 분리한 컴포넌트 임포트
 import AuthForm from "@/components/auth/AuthForm";
@@ -25,45 +26,61 @@ export default function LoginPage() {
 
   const handleAuth = async (data: any) => {
     setIsLoading(true);
+    
+    const formData = new FormData();
+    formData.append("email", data.email);
+    formData.append("password", data.password);
+    if (data.name) formData.append("name", data.name);
+
     try {
+      let result;
       if (isSignUp) {
-        const { error } = await supabase.auth.signUp({
-          email: data.email,
-          password: data.password,
-          options: { data: { full_name: data.name } },
-        });
-        if (error) throw error;
-        toast.success(language === "ko" ? "가입 성공! 메일을 확인해주세요." : "Signup success! Please check your email.");
+        result = await signup(formData);
+        // 회원가입은 보통 바로 리다이렉트하지 않고 메시지를 보여주므로 result 확인
+        if (result?.error) throw new Error(result.error);
+        toast.success(language === "ko" ? "가입 성공! 메일을 확인해주세요." : "Signup success! Check your email.");
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
-          email: data.email,
-          password: data.password,
-        });
-        if (error) throw error;
-        window.location.href = "/finance";
+        result = await login(formData);
+        // 로그인 성공 시에는 서버에서 redirect를 던지므로 이 아래 코드는 실행되지 않습니다.
+        // 하지만 만약 서버에서 에러 객체를 리턴했다면 여기서 잡아냅니다.
+        if (result?.error) throw new Error(result.error);
       }
     } catch (error: any) {
-      toast.error(error.message);
+      // 💡 핵심: NEXT_REDIRECT 에러는 무시하고 진짜 에러만 toast로 보여줌
+      if (error.message !== "NEXT_REDIRECT") {
+        toast.error(error.message);
+      }
     } finally {
+      // 리다이렉트가 발생하면 페이지가 이동하므로 큰 의미는 없지만, 
+      // 에러 발생 시 버튼 활성화를 위해 로딩을 꺼줍니다.
       setIsLoading(false);
     }
   };
 
   const handleGoogleLogin = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: { redirectTo: `${window.location.origin}/auth/callback` },
-    });
-    if (error) toast.error(error.message);
+    const result = await signInWithGoogle();
+    if (result?.error) toast.error(result.error);
   };
 
   const handleGuestLogin = async () => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email: "guest@example.com",
-      password: "guestpassword123!",
-    });
-    if (!error) window.location.href = "/finance";
-    else toast.error("Guest login failed.");
+    setIsLoading(true);
+    try {
+      const result = await loginAsGuest();
+      
+      // 서버 액션이 리다이렉트되지 않고 에러 객체를 반환했을 때만 처리
+      if (result && 'error' in result) {
+        toast.error(result.error);
+      }
+    } catch (error: any) {
+      // Next.js의 리다이렉트 에러는 무시하고, 진짜 에러만 토스트로 띄움
+      if (error.message !== "NEXT_REDIRECT") {
+        toast.error("An unexpected error occurred");
+      }
+    } finally {
+      // 리다이렉트가 일어나면 어차피 페이지가 이동하므로 큰 상관 없지만, 
+      // 에러 시에는 로딩을 꺼줘야 합니다.
+      setIsLoading(false);
+    }
   };
 
   return (
