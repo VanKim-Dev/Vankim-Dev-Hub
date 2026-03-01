@@ -55,7 +55,8 @@ export async function signInWithGoogle() {
     provider: 'google',
     options: {
       // 배포 환경과 로컬 환경에 맞게 자동으로 Origin을 잡도록 설정
-      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`,
+      // redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/auth/callback`,
+      redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://vankim-dev-hub.vercel.app/'}/auth/callback`,
     },
   });
 
